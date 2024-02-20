@@ -19,31 +19,31 @@ async function run() {
     }
 
     const octokit = new Octokit();
-    core.info(
-      `Checking for Code Scanning`
-    );
-    const { data: codeScanData } = await octokit.request(
-      `GET /repos/${repository}/code-scanning/alerts{?per_page,state}`,
-      {
-        per_page: 100,
-        state: "open",
-      }
-    );
-    if (
-      codeScanData.message === "no analysis found" &&
-      allowNotFound !== "true"
-    ) {
-      core.setFailed(`No code scanning results!`);
-    }
-    const filteredCodeScanResults = codeScanData.filter((item) => {
-      let severity = item.rule.security_severity_level || item.rule.severity;
-      return toSeverityLevel(severity) >= toSeverityLevel(severityThreshold);
-    });
-    if (filteredCodeScanResults.length > 0) {
-      alerts.push(
-        `Found ${filteredCodeScanResults.length} code scan issues with ${severityThreshold} severity and above`
-      );
-    }
+    // core.info(
+    //   `Checking for Code Scanning`
+    // );
+    // const { data: codeScanData } = await octokit.request(
+    //   `GET /repos/${repository}/code-scanning/alerts{?per_page,state}`,
+    //   {
+    //     per_page: 100,
+    //     state: "open",
+    //   }
+    // );
+    // if (
+    //   codeScanData.message === "no analysis found" &&
+    //   allowNotFound !== "true"
+    // ) {
+    //   core.setFailed(`No code scanning results!`);
+    // }
+    // const filteredCodeScanResults = codeScanData.filter((item) => {
+    //   let severity = item.rule.security_severity_level || item.rule.severity;
+    //   return toSeverityLevel(severity) >= toSeverityLevel(severityThreshold);
+    // });
+    // if (filteredCodeScanResults.length > 0) {
+    //   alerts.push(
+    //     `Found ${filteredCodeScanResults.length} code scan issues with ${severityThreshold} severity and above`
+    //   );
+    // }
     // core.info(
     //   `Checking for Dependabot`
     // );
