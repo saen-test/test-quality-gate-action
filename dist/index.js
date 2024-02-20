@@ -13734,6 +13734,8 @@ async function run() {
         `Found ${filteredCodeScanResults.length} code scan issues with ${severityThreshold} severity and above`
       );
     }
+
+    core.info(`Test2 ${JSON.stringify(filteredCodeScanResults)}`);
     // core.info(
     //   `Checking for Dependabot`
     // );
