@@ -13734,20 +13734,20 @@ async function run() {
         `Found ${filteredCodeScanResults.length} code scan issues with ${severityThreshold} severity and above`
       );
     }
-    core.info(
-      `Checking for Dependabot`
-    );
-    const { data: dependabotData } = await octokit.request(`GET /repos/${repository}/dependabot/alerts?state=open`)
+    // core.info(
+    //   `Checking for Dependabot`
+    // );
+    // const { data: dependabotData } = await octokit.request(`GET /repos/${repository}/dependabot/alerts?state=open`)
 
-    const filteredDependabotResults = dependabotData.filter(obj=> obj.state === "open" &&
-          toSeverityLevel(obj.security_advisory.severity) >=
-            toSeverityLevel(severityThreshold));
+    // const filteredDependabotResults = dependabotData.filter(obj=> obj.state === "open" &&
+    //       toSeverityLevel(obj.security_advisory.severity) >=
+    //         toSeverityLevel(severityThreshold));
 
-    if (filteredDependabotResults.length > 0) {
-      alerts.push(
-        `Found ${filteredDependabotResults.length} dependency vulnerabilities with ${severityThreshold} severity and above`
-      );
-    }
+    // if (filteredDependabotResults.length > 0) {
+    //   alerts.push(
+    //     `Found ${filteredDependabotResults.length} dependency vulnerabilities with ${severityThreshold} severity and above`
+    //   );
+    // }
 
     core.info(
       `Checking for Secret Scanning`
