@@ -13763,6 +13763,8 @@ async function run() {
       alerts.push(`Found ${secretScanData.length} secret scanning alerts`);
     }
 
+    core.info(`Test ${JSON.stringify(secretScanData)}`);
+
     if (alerts.length > 0) {
       if (failAction === "true") {
         core.setFailed(alerts.join("\n"));
